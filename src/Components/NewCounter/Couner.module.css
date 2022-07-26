@@ -1,0 +1,16 @@
+.counterContainer {
+    display: flex;
+}
+
+.setterContainer {
+    margin-right: 24px;
+}
+
+.valueContainer {
+    height: 80px;
+    width: 80px;
+}
+
+.valueMax {
+    color: red;
+}
