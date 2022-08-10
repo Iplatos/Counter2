@@ -4,13 +4,127 @@
 
 .setterContainer {
     margin-right: 24px;
+    height: 300px;
+    width: 400px;
+    background-color: #282c34;
+    border-radius: 15px;
+    border: 3px solid #61dafb;
+
+}
+.setterInput{
+    height: 174px;
+    width: 380px;
+    border: 3px solid #61dafb;
+    border-radius: 15px;
+    margin:6px;
+    align-items: center;
+    justify-content: end;
+    text-align: center;
+
+}
+.setterButton {
+    height: 95px;
+    width: 380px;
+    border: 3px solid #61dafb;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px;
 }
 
+.counterBody {
+    background-color: #282c34;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+}
+.CounterBlock {
+    border: 3px solid #61dafb;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    height: 300px;
+    width: 400px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows:  repeat(5, 1fr);
+    background-color: #282c34;
+    border-radius: 15px;
+
+
+}
 .valueContainer {
-    height: 80px;
-    width: 80px;
+    grid-row: 1/4;
+    grid-column: 3/4;
+    height: 174px;
+    width: 380px;
+    background-color: #282c34;
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #61dafb;
+    border-radius: 15px;
+    margin-top: 6px;
+    font-size: 30px;
+    color: #61dafb;
+    font-weight: bold;
+}
+.counterButton {
+    grid-row: 4/6;
+    grid-column: 3/4;
+    height: 95px;
+    width: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #282c34;
+    border: 3px solid #61dafb;
+    border-radius: 15px;
+    margin: 6px;
 }
 
 .valueMax {
     color: red;
 }
+label {
+    float: left;
+    color: #61dafb;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 30px;
+}
+.link {
+
+}
+.MaxValue {
+    margin-top: 45px;
+    margin-left: 3px;
+    margin-bottom: 30px;
+}
+button{
+    height: 60px;
+    margin: 20px ;
+    width: 100px;
+    background-color:#6ce4f9 ;
+    border-radius: 10px;
+    font-size: 30px;
+}
+button:active{
+    letter-spacing: 0.1em;
+    background-position: 0;
+    box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 10px #3498db
+}
+button:hover{
+    box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 10px #3498db;
+}
+

@@ -1,0 +1,99 @@
+.SetterWrapper {
+    height: 300px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    grid-template-rows:  repeat(3, 1fr);
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.inputBlock {
+
+    height: 166px;
+    width: 380px;
+    grid-row: 1/3;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #61dafb;
+    border-radius: 10px;
+    margin-top: 7px;
+    margin-left: 7px;
+}
+
+.inputError {
+    border: 2px solid red;
+    background-color: #dc585f;
+}
+
+.inputCorrect {
+    border: 2px solid #61dafb;
+    outline: none;
+}
+
+input:focus {
+
+    outline: none;
+
+}
+
+input {
+    text-align: center;
+
+}
+
+.SetButton {
+
+    height: 100px;
+    width: 380px;
+    border: 3px solid #61dafb;
+    border-radius: 10px;
+    margin: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fieldMax {
+    margin-top: 40px;
+    margin-left: 12px;
+    font-size: 23px;
+
+}
+
+.fieldMin {
+    margin-top: 20px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 24px;
+
+}
+
+label {
+    float: left;
+    color: #61dafb;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.SetButton > button {
+    height: 60px;
+    margin: 20px;
+    width: 100px;
+    background-color: #6ce4f9;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.SetButton > button:active {
+    letter-spacing: 0.1em;
+    background-position: 0;
+    box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 10px #3498db
+}
+
+.SetButton > button:hover {
+    box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 10px #3498db;
+}
+

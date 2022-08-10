@@ -5,7 +5,10 @@ type displayProps = {
     displayedValue: number
     startValue: number
     maxValue: number
+    isEditing: boolean
     setDisplayedValue: Dispatch<React.SetStateAction<number>>
+    isCorrect: boolean
+    setCorrect: Dispatch<React.SetStateAction<boolean>>
 }
 
 type CounterBlockPropsType = {
@@ -17,7 +20,10 @@ const CounterBlock: React.FC<CounterBlockPropsType> = ({
                                                                maxValue,
                                                                displayedValue,
                                                                startValue,
-                                                               setDisplayedValue
+                                                               setDisplayedValue,
+                                                               isCorrect,
+                                                               isEditing,
+
                                                            }
                                                        }) => {
 
@@ -29,13 +35,23 @@ const CounterBlock: React.FC<CounterBlockPropsType> = ({
         setDisplayedValue(startValue);
     };
 
+    const getState = (): string | number => {
+        if (isEditing && isCorrect && maxValue !== startValue && maxValue>startValue) {
+            return "enter value and press 'set'";
+        } else if (  maxValue<=startValue ||  !isCorrect /*|| maxValue<startValue*/) {
+            return "incorrect value";
+        } else {
+            return displayedValue;
+        }
+    }
     return (
-        <div>
-            <div style={{color: displayedValue === maxValue ? "red" : ""}}
-                 className={styles.valueContainer}>{displayedValue}</div>
-            <div>
-                <button disabled={displayedValue === maxValue} onClick={onIncrease}>Inc</button>
-                <button onClick={onReset}>Reset</button>
+        <div className={styles.CounterBlock}>
+            <div style={{color: displayedValue === maxValue || !isCorrect || maxValue <= startValue ? "red" : ""}}
+                 className={styles.valueContainer}>{getState()}</div>
+            <div className={styles.counterButton}>
+                <span><button disabled={displayedValue === maxValue || isEditing || !isCorrect} onClick={onIncrease}>Inc
+                </button></span>
+                <span><button disabled={isEditing || !isCorrect} onClick={onReset}>Reset</button></span>
             </div>
         </div>
     )

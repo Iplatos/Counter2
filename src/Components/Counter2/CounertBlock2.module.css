@@ -1,0 +1,73 @@
+.AppCounter {
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    height: 300px;
+    width: 400px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows:  repeat(5, 1fr);
+}
+
+.MaxCounterValue {
+    color: red;
+    background-color: #282c34;
+    font-size: 80px;
+    grid-row: 1/4;
+    grid-column: 1/6;
+    border: 3px solid #61dafb;
+    border-radius: 10px;
+    margin: 7px;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.counterValue {
+    background-color: #282c34;
+    font-size: 80px;
+    color: #61dafb;
+    grid-row: 1/4;
+    grid-column: 1/6;
+    border: 3px solid #61dafb;
+    border-radius: 10px;
+    margin: 7px;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.counterButtonBlock {
+    grid-row: 4/6;
+    grid-column: 1/6;
+    border: 3px solid #61dafb;
+    border-radius: 10px;
+    margin: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.counterButtonBlock > button {
+    margin: 0px;
+    margin-top: 5px;
+    height: 60px;
+    width: 100px;
+    background-color: #6ce4f9;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.counterButtonBlock > button:active {
+    letter-spacing: 0.1em;
+    background-position: 0;
+    box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 10px #3498db
+}
+
+.counterButtonBlock > button:hover {
+    box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 10px #3498db;
+}
