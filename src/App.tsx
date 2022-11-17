@@ -8,7 +8,7 @@ import Counter2 from "./Components/Counter2/Counter2";
 function App() {
     return (
         <BrowserRouter>
-            <><Menu/></>
+            <Menu/>
             <Routes>
                 <Route path="/Counter1" element={<Counter/>}/>
                 <Route path="/Counter2" element={<Counter2/>}/>

@@ -1,14 +1,19 @@
 import React, {Dispatch} from 'react';
 import styles from "./Couner.module.css";
+import {useDispatch} from "react-redux";
+import {CounterOneReducerType, onIncreaseAC, onResetAC} from "../Counter2/reducers";
 
 type displayProps = {
     displayedValue: number
     startValue: number
     maxValue: number
     isEditing: boolean
+/*
     setDisplayedValue: Dispatch<React.SetStateAction<number>>
+*/
     isCorrect: boolean
     setCorrect: Dispatch<React.SetStateAction<boolean>>
+    dispatch: (action: CounterOneReducerType)=>void
 }
 
 type CounterBlockPropsType = {
@@ -20,25 +25,27 @@ const CounterBlock: React.FC<CounterBlockPropsType> = ({
                                                                maxValue,
                                                                displayedValue,
                                                                startValue,
-                                                               setDisplayedValue,
                                                                isCorrect,
                                                                isEditing,
-
+                                                               dispatch
                                                            }
                                                        }) => {
 
+
     const onIncrease = (): void => {
-        setDisplayedValue(displayedValue => displayedValue + 1);
+        const action = onIncreaseAC()
+        dispatch(action)
     };
 
     const onReset = (): void => {
-        setDisplayedValue(startValue);
+        const action = onResetAC()
+        dispatch(action)
     };
 
     const getState = (): string | number => {
-        if (isEditing && isCorrect && maxValue !== startValue && maxValue>startValue) {
+        if (isEditing && isCorrect && maxValue !== startValue && maxValue > startValue) {
             return "enter value and press 'set'";
-        } else if (  maxValue<=startValue ||  !isCorrect /*|| maxValue<startValue*/) {
+        } else if (maxValue <= startValue || !isCorrect /*|| maxValue<startValue*/) {
             return "incorrect value";
         } else {
             return displayedValue;

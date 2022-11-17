@@ -1,15 +1,17 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import styles from "./Couner.module.css";
+import {CounterOneReducerType, onSetAC, setMaxValueAC, setMinValueAC} from "../Counter2/reducers";
 
 type CounterState = {
     startValue: number
     maxValue: number
     isCorrect: boolean
     setCorrect: Dispatch<SetStateAction<boolean>>
-    setStartValue: Dispatch<SetStateAction<number>>
+  /*  setStartValue: Dispatch<SetStateAction<number>>
     setMaxValue: Dispatch<SetStateAction<number>>
-    setDisplayedValue: Dispatch<SetStateAction<number>>
+    setDisplayedValue: Dispatch<SetStateAction<number>>*/
     setEditing: Dispatch<SetStateAction<boolean>>
+    dispatch:(action:CounterOneReducerType)=>void
 }
 
 type SetterBlockPropsType = {
@@ -22,10 +24,8 @@ const SetterBlock: React.FC<SetterBlockPropsType> = ({
                                                              maxValue,
                                                              isCorrect,
                                                              setCorrect,
-                                                             setMaxValue,
-                                                             setStartValue,
-                                                             setDisplayedValue,
-                                                             setEditing
+                                                             setEditing,
+                                                             dispatch
                                                          }
                                                      }) => {
     const [isSetterDisabled, setSetterDisabled] = useState(true);
@@ -35,10 +35,11 @@ const SetterBlock: React.FC<SetterBlockPropsType> = ({
 
     const onSet = () => {
         setSetterDisabled(true);
-        setDisplayedValue(startValue);
+        const action = onSetAC(startValue)
+       dispatch(action)
         setEditing(false);
-        localStorage.setItem("maxValue", JSON.stringify(maxValue))
-        localStorage.setItem("startValue", JSON.stringify(startValue))
+       /* localStorage.setItem("maxValue", JSON.stringify(maxValue))
+        localStorage.setItem("startValue", JSON.stringify(startValue))*/
         //localStorage.setItem("displayedValue", JSON.stringify(startValue))
     };
 
@@ -48,8 +49,10 @@ const SetterBlock: React.FC<SetterBlockPropsType> = ({
                 <div className={styles.MaxValue}>
                     <label>Max Value</label>
                     <input style={{backgroundColor: maxValue<0 || startValue===maxValue ? "red" : ""}} type={"number"} value={maxValue} onChange={(event) => {
+
                         const mappedValue = getMappedValue(event.currentTarget.value);
-                        setMaxValue(mappedValue);
+                        const action = setMaxValueAC(mappedValue)
+                        dispatch(action);
                         setSetterDisabled(false);
                         setEditing(true);
                         if (mappedValue < 0) {
@@ -63,7 +66,8 @@ const SetterBlock: React.FC<SetterBlockPropsType> = ({
                     <label>Start Value</label>
                     <input style={{backgroundColor: startValue<0 || startValue>=maxValue ? "red" : ""}} type={"number"} value={startValue} onChange={(event) => {
                         const mappedValue = getMappedValue(event.currentTarget.value);
-                        setStartValue(mappedValue);
+                        const action = setMinValueAC(mappedValue)
+                        dispatch(action);
                         setSetterDisabled(false);
                         setEditing(true);
                         if (mappedValue < 0) {

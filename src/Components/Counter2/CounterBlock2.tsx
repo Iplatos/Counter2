@@ -1,5 +1,6 @@
 import React from 'react';
 import s from "./CounertBlock2.module.css"
+import {onIncreaseAC, OnresetAC, reducerTwoType} from "./store/reducerTwo";
 
 type counter2StateType = {
     counterValue: number
@@ -7,8 +8,7 @@ type counter2StateType = {
     isSetting: boolean
     maxValue: number
     setIsSetting: React.Dispatch<React.SetStateAction<boolean>>
-    setMinValue: React.Dispatch<React.SetStateAction<number>>
-    setCounterValue: React.Dispatch<React.SetStateAction<number>>
+    dispatch:(action:reducerTwoType)=>void
     isSettingHandler: (set: boolean) => void /*React.Dispatch<React.SetStateAction<boolean>>*/
 }
 type counter2PropsType = {
@@ -22,17 +22,17 @@ const CounterBlock2: React.FC<counter2PropsType> = ({
                                                             counterValue,
                                                             minValue,
                                                             maxValue,
-                                                            setCounterValue,
-                                                            setMinValue,
-                                                            setIsSetting,
+                                                            dispatch,
                                                             isSettingHandler
                                                         }
                                                     }) => {
     const OnIncButtonHandler = () => {
-        setCounterValue(counterValue => counterValue + 1)
+        const action = onIncreaseAC()
+       dispatch(action)
     }
     const OnResetButtonHandler = () => {
-        setCounterValue(minValue)
+        const action = OnresetAC(minValue)
+        dispatch(action)
     }
     const SettingHandler = () => {
         isSettingHandler(!isSetting)

@@ -3,18 +3,23 @@ import CounterBlock2 from "./CounterBlock2";
 import SetterBlock2 from "./SetterBlock2";
 import s from "./Counter2.module.css"
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootReducer} from "./store/store";
+import {setCounterValueAC} from "./store/reducerTwo";
 
 const Counter2 = () => {
-    const [counterValue, setCounterValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(5)
-    const [minValue, setMinValue] = useState(counterValue)
+  const counterValue = useSelector<AppRootReducer, number>(state => state.counterTwo.counterValue)
+    const maxValue = useSelector<AppRootReducer, number>(state=>state.counterTwo.maxValue)
+    const minValue = useSelector<AppRootReducer, number>(state=>state.counterTwo.startValue)
     const [isSetting, setIsSetting] = useState(false)
 
+    const dispatch = useDispatch()
     const isSettingHandler = () => {
         setIsSetting(!isSetting)
-        setCounterValue(minValue)
+        const action  =  setCounterValueAC(minValue)
+        dispatch(action)
     }
-useEffect(()=>{
+/*useEffect(()=>{
      const NewStringMaxValue = localStorage.getItem("counter2_maxValue")
     if (NewStringMaxValue) {
        let NewMaxValue = JSON.parse(NewStringMaxValue)
@@ -29,7 +34,7 @@ useEffect(()=>{
             setMinValue(NewMinValue)
             setCounterValue(NewMinValue)
         }
-    },[])
+    },[])*/
 
     return (
         <div className={s.counterBody}>
@@ -41,9 +46,8 @@ useEffect(()=>{
                         minValue,
                         isSetting,
                         setIsSetting,
-                        setMinValue,
-                        setMaxValue,
-                        isSettingHandler
+                        isSettingHandler,
+                        dispatch
                     }}/>
                     : <CounterBlock2 counter2State={{
                         counterValue,
@@ -51,8 +55,7 @@ useEffect(()=>{
                         minValue,
                         isSetting,
                         setIsSetting,
-                        setMinValue,
-                        setCounterValue,
+                        dispatch,
                         isSettingHandler
                     }}/>
                 }
